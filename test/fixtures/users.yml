@@ -3,3 +3,8 @@ bond:
   name: James Bond
   email: bond@example.gov
   password_digest: <%= User.digest('password') %>
+  
+archer:
+  name: Sterling Archer
+  email: mamasboy@example.gov
+  password_digest: <%= User.digest('password') %>
