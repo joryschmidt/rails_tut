@@ -42,4 +42,11 @@ class UsersControllerTest < ActionController::TestCase
     assert_not flash.empty?
     assert_redirected_to root_url
   end
+  
+  test 'destroy should redirect when user not logged in' do
+    assert_no_difference 'User.count' do
+      delete :destroy, id: @user
+    end
+    assert_redirected_to root_url
+  end
 end
