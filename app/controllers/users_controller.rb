@@ -54,7 +54,12 @@ class UsersController < ApplicationController
     end
     
     def correct_user
-      @user = User.find_by(params[:id])
-      redirect_to root_url unless current_user?(@user)
+      @user = User.find(params[:id])
+      if current_user?(@user)
+        return true
+      else
+        redirect_to root_url unless current_user?(@user)
+        flash[:warning] = "Naughty, naughty. You shouldn't try to update others' profiles, you know."
+      end
     end
 end
