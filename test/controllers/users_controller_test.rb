@@ -32,14 +32,14 @@ class UsersControllerTest < ActionController::TestCase
   test 'should redirect edit when logged in as someone else' do 
     log_in_as(@other_user)
     get :edit, id: @user
-    assert_not flash.empty?
+    assert flash.empty?
     assert_redirected_to root_url
   end
   
   test 'should redirect update when logged in as someone else' do
     log_in_as(@other_user)
     patch :update, id: @user, user: {name: @other_user.name, email: @other_user.email }
-    assert_not flash.empty?
+    assert flash.empty?
     assert_redirected_to root_path
   end
 end
