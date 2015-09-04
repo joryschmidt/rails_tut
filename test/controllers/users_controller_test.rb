@@ -49,4 +49,12 @@ class UsersControllerTest < ActionController::TestCase
     end
     assert_redirected_to root_url
   end
+  
+  test 'destroy should redirect when user is not admin' do
+    log_in_as(@other_user)
+    assert_no_difference 'User.count' do
+      delete :destroy, id: @user
+    end
+    assert_redirected_to root_url
+  end
 end
