@@ -30,6 +30,8 @@ class PasswordResetsController < ApplicationController
       log_in @user
       flash[:success] = 'Your password has been reset'
       redirect_to @user
+    else
+      render 'edit'
     end
   end
   
