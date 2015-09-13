@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   
   resources :password_resets, only: [:new, :edit, :create, :update]
   
+  resources :microposts, only: [:create, :destroy]
+  
   get 'signup' => 'users#new'  
   
   root 'static_pages#home'

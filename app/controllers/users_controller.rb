@@ -54,20 +54,12 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
     end
     
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:warning] = 'Please login'
-        redirect_to login_url
-      end
-    end
-    
     def correct_user
       @user = User.find(params[:id])
       if current_user?(@user)
         return true
       else
-        redirect_to root_url unless current_user?(@user)
+        redirect_to root_url
         flash[:warning] = "Naughty, naughty. You shouldn't try to update others' profiles, you know."
       end
     end
